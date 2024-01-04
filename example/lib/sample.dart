@@ -30,6 +30,7 @@ class Sample extends StatelessWidget {
               ),
             ),
             child: KeyboardActions(
+              parentContext: context,
               tapOutsideBehavior: TapOutsideBehavior.opaqueDismiss,
               config: KeyboardActionsConfig(
                 keyboardSeparatorColor: Colors.purple,

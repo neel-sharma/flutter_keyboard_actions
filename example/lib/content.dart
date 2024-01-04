@@ -164,6 +164,7 @@ class _ContentState extends State<Content> {
   @override
   Widget build(BuildContext context) {
     return KeyboardActions(
+      parentContext: context,
       isDialog: widget.isDialog,
       config: _buildConfig(context),
       child: Container(
