@@ -19,7 +19,6 @@ class Sample5 extends StatelessWidget {
               flex: 2,
               child: Center(
                 child: KeyboardActions(
-                  parentContext: context,
                   tapOutsideBehavior: TapOutsideBehavior.translucentDismiss,
                   config: KeyboardActionsConfig(
                     // Define ``defaultDoneWidget`` only once in the config
