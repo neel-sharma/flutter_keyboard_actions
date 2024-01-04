@@ -86,14 +86,17 @@ class KeyboardActions extends StatefulWidget {
   /// Does not clear the focus if you tap on the node focused, useful for keeping the text cursor selection working. Usually used with tapOutsideBehavior as translucent
   final bool keepFocusOnTappingNode;
 
+  final BuildContext parentContext;
+
   const KeyboardActions(
-      {this.child,
+      {required this.parentContext,
+      this.child,
       this.bottomAvoiderScrollPhysics,
       this.enable = true,
       this.autoScroll = true,
       this.isDialog = false,
       @Deprecated('Use tapOutsideBehavior instead.')
-          this.tapOutsideToDismiss = false,
+      this.tapOutsideToDismiss = false,
       this.tapOutsideBehavior = TapOutsideBehavior.none,
       required this.config,
       this.overscroll = 12.0,
@@ -237,7 +240,7 @@ class KeyboardActionstate extends State<KeyboardActions>
   }
 
   void _onTapUp() {
-    FocusScope.of(context).previousFocus();
+    FocusScope.of(widget.parentContext).previousFocus();
     // if (_previousIndex != null) {
     //   final currentAction = _map[_previousIndex!]!;
     //   if (currentAction.enabled) {
@@ -250,7 +253,7 @@ class KeyboardActionstate extends State<KeyboardActions>
   }
 
   void _onTapDown() {
-    FocusScope.of(context).nextFocus();
+    FocusScope.of(widget.parentContext).nextFocus();
     // if (_nextIndex != null) {
     //   final currentAction = _map[_nextIndex!]!;
     //   if (currentAction.enabled) {
