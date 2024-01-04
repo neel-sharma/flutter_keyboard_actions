@@ -237,27 +237,29 @@ class KeyboardActionstate extends State<KeyboardActions>
   }
 
   void _onTapUp() {
-    if (_previousIndex != null) {
-      final currentAction = _map[_previousIndex!]!;
-      if (currentAction.enabled) {
-        _shouldGoToNextFocus(currentAction, _previousIndex);
-      } else {
-        _currentIndex = _previousIndex;
-        _onTapUp();
-      }
-    }
+    FocusScope.of(context).previousFocus();
+    // if (_previousIndex != null) {
+    //   final currentAction = _map[_previousIndex!]!;
+    //   if (currentAction.enabled) {
+    //     _shouldGoToNextFocus(currentAction, _previousIndex);
+    //   } else {
+    //     _currentIndex = _previousIndex;
+    //     _onTapUp();
+    //   }
+    // }
   }
 
   void _onTapDown() {
-    if (_nextIndex != null) {
-      final currentAction = _map[_nextIndex!]!;
-      if (currentAction.enabled) {
-        _shouldGoToNextFocus(currentAction, _nextIndex);
-      } else {
-        _currentIndex = _nextIndex;
-        _onTapDown();
-      }
-    }
+    FocusScope.of(context).nextFocus();
+    // if (_nextIndex != null) {
+    //   final currentAction = _map[_nextIndex!]!;
+    //   if (currentAction.enabled) {
+    //     _shouldGoToNextFocus(currentAction, _nextIndex);
+    //   } else {
+    //     _currentIndex = _nextIndex;
+    //     _onTapDown();
+    //   }
+    // }
   }
 
   /// Shows or hides the keyboard bar as needed, and re-calculates the overlay offset.
