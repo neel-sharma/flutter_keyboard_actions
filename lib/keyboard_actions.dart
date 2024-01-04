@@ -253,7 +253,7 @@ class KeyboardActionstate extends State<KeyboardActions>
   }
 
   void _onTapDown() {
-    FocusScope.of(widget.parentContext).nextFocus();
+    FocusScope.of(context).nextFocus();
     // if (_nextIndex != null) {
     //   final currentAction = _map[_nextIndex!]!;
     //   if (currentAction.enabled) {
@@ -537,7 +537,7 @@ class KeyboardActionstate extends State<KeyboardActions>
                   iconSize: IconTheme.of(context).size!,
                   color: IconTheme.of(context).color,
                   disabledColor: Theme.of(context).disabledColor,
-                  onPressed: _previousIndex != null ? _onTapUp : null,
+                  onPressed: _onTapUp,
                 ),
                 IconButton(
                   icon: Icon(Icons.keyboard_arrow_down),
@@ -545,7 +545,7 @@ class KeyboardActionstate extends State<KeyboardActions>
                   iconSize: IconTheme.of(context).size!,
                   color: IconTheme.of(context).color,
                   disabledColor: Theme.of(context).disabledColor,
-                  onPressed: _nextIndex != null ? _onTapDown : null,
+                  onPressed: _onTapDown,
                 ),
                 const Spacer(),
               ],
