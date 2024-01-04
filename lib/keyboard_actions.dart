@@ -588,6 +588,23 @@ class KeyboardActionstate extends State<KeyboardActions>
 
   @override
   Widget build(BuildContext context) {
+    return widget.enable && !widget.disableScroll
+        ? Material(
+            color: Colors.transparent,
+            child: BottomAreaAvoider(
+              key: bottomAreaAvoiderKey,
+              areaToAvoid: _offset,
+              overscroll: widget.overscroll,
+              duration: Duration(
+                  milliseconds:
+                      (_timeToDismiss.inMilliseconds * 1.8).toInt()),
+              autoScroll: widget.autoScroll,
+              physics: widget.bottomAvoiderScrollPhysics,
+              child: widget.child,
+            ),
+          )
+        : widget.child!;
+
     // Return the given child wrapped in a [KeyboardAvoider].
     // We will call [_buildBar] and insert it via overlay on demand.
     // Add [_kBarSize] padding to ensure we scroll past the action bar.
@@ -598,25 +615,25 @@ class KeyboardActionstate extends State<KeyboardActions>
     // If we don't, we get "LayoutBuilder does not support returning intrinsic dimensions".
     // See https://github.com/flutter/flutter/issues/18108.
     // The SizedBox can be removed when thats fixed.
-    return widget.enable && !widget.disableScroll
-        ? Material(
-            color: Colors.transparent,
-            child: SizedBox(
-              width: double.maxFinite,
-              key: _keyParent,
-              child: BottomAreaAvoider(
-                key: bottomAreaAvoiderKey,
-                areaToAvoid: _offset,
-                overscroll: widget.overscroll,
-                duration: Duration(
-                    milliseconds:
-                        (_timeToDismiss.inMilliseconds * 1.8).toInt()),
-                autoScroll: widget.autoScroll,
-                physics: widget.bottomAvoiderScrollPhysics,
-                child: widget.child,
-              ),
-            ),
-          )
-        : widget.child!;
+    // return widget.enable && !widget.disableScroll
+    //     ? Material(
+    //   color: Colors.transparent,
+    //   child: SizedBox(
+    //     width: double.maxFinite,
+    //     key: _keyParent,
+    //     child: BottomAreaAvoider(
+    //       key: bottomAreaAvoiderKey,
+    //       areaToAvoid: _offset,
+    //       overscroll: widget.overscroll,
+    //       duration: Duration(
+    //           milliseconds:
+    //           (_timeToDismiss.inMilliseconds * 1.8).toInt()),
+    //       autoScroll: widget.autoScroll,
+    //       physics: widget.bottomAvoiderScrollPhysics,
+    //       child: widget.child,
+    //     ),
+    //   ),
+    // )
+    //     : widget.child!;
   }
 }
