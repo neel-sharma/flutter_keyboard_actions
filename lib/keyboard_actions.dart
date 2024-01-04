@@ -588,22 +588,7 @@ class KeyboardActionstate extends State<KeyboardActions>
 
   @override
   Widget build(BuildContext context) {
-    return widget.enable && !widget.disableScroll
-        ? Material(
-            color: Colors.transparent,
-            child: BottomAreaAvoider(
-              key: bottomAreaAvoiderKey,
-              areaToAvoid: _offset,
-              overscroll: widget.overscroll,
-              duration: Duration(
-                  milliseconds:
-                      (_timeToDismiss.inMilliseconds * 1.8).toInt()),
-              autoScroll: widget.autoScroll,
-              physics: widget.bottomAvoiderScrollPhysics,
-              child: widget.child,
-            ),
-          )
-        : widget.child!;
+    return widget.child!;
 
     // Return the given child wrapped in a [KeyboardAvoider].
     // We will call [_buildBar] and insert it via overlay on demand.
